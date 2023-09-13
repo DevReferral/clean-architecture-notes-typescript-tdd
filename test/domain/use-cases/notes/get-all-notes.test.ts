@@ -1,7 +1,7 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
 import { NotesResponseModel } from '../../../../src/domain/models/notes';
 import GetAllNotes from '../../../../src/domain/use-cases/get-all-notes';
-import { getMockNotesRepository } from './helpers/notesHelper';
+import { getMockNotesRepository } from '../../../helpers/notesHelper';
 
 describe('Get all notes use case', () => {
   let mockNotesRepository: NotesRepository;

@@ -1,9 +1,9 @@
-import { NotesDataSource } from '../../../../src/data/interfaces/notes-data-source';
+import { NotesDataSource } from '../../src/data/interfaces/notes-data-source';
 
 import {
   NotesRequestModel,
   NotesResponseModel,
-} from '../../../../src/domain/models/notes';
+} from '../../src/domain/models/notes';
 class MockNotesDataSource implements NotesDataSource {
   create(note: NotesRequestModel): Promise<NotesResponseModel> {
     throw new Error('Method not implemented.');

@@ -4,7 +4,7 @@ import {
   NotesResponseModel,
 } from '../../../src/domain/models/notes';
 import NotesRepositoryImpl from '../../../src/domain/repositories/notes-repository';
-import { getMockNotesDataSource } from './helpers/notesRepositoryHelper';
+import { getMockNotesDataSource } from '../../helpers/notesRepositoryHelper';
 
 describe('notes repository', () => {
   let mockNotesDataSource: NotesDataSource;
