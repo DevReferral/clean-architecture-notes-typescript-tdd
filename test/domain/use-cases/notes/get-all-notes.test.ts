@@ -5,35 +5,15 @@ import {
   NotesResponseModel,
 } from '../../../../src/domain/models/notes';
 import GetAllNotes from '../../../../src/domain/use-cases/get-all-notes';
+import { getMockNotesRepository } from './helpers/notesHelper';
 
 describe('Get all notes use case', () => {
-  class MockNotesRepository implements NotesRepository {
-    createNote(note: NotesRequestModel): Promise<NotesResponseModel> {
-      throw new Error('Method not implemented.');
-    }
-    deleteNote(id: string): Promise<void> {
-      throw new Error('Method not implemented.');
-    }
-    updateNote(
-      id: string,
-      data: NotesRequestModel
-    ): Promise<NotesResponseModel> {
-      throw new Error('Method not implemented.');
-    }
-    getNote(id: string): Promise<NotesResponseModel | null> {
-      throw new Error('Method not implemented.');
-    }
-    getNotes(): Promise<NotesResponseModel[]> {
-      throw new Error('Method not implemented.');
-    }
-  }
-
-  let mockNotesRepository: MockNotesRepository;
+  let mockNotesRepository: NotesRepository;
 
   beforeEach(() => {
     jest.clearAllMocks();
 
-    mockNotesRepository = new MockNotesRepository();
+    mockNotesRepository = getMockNotesRepository();
   });
 
   test('should return notes', async () => {

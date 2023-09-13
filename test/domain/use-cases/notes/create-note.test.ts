@@ -1,57 +1,32 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
-import {
-  NotesRequestModel,
-  NotesResponseModel,
-} from '../../../../src/domain/models/notes';
+import { NotesResponseModel } from '../../../../src/domain/models/notes';
 import { CreateNote } from '../../../../src/domain/use-cases/create-note';
+import { getMockNotesRepository } from './helpers/notesHelper';
 
-describe('Create Note use case', () => {
-  class MockNotesRepository implements NotesRepository {
-    createNote(note: NotesRequestModel): Promise<NotesResponseModel> {
-      throw new Error('Method not implemented.');
-    }
-    deleteNote(id: string): Promise<void> {
-      throw new Error('Method not implemented.');
-    }
-    updateNote(
-      id: string,
-      data: NotesRequestModel
-    ): Promise<NotesResponseModel> {
-      throw new Error('Method not implemented.');
-    }
-    getNote(id: string): Promise<NotesResponseModel | null> {
-      throw new Error('Method not implemented.');
-    }
-    getNotes(): Promise<NotesResponseModel[]> {
-      throw new Error('Method not implemented.');
-    }
-  }
+let mockNotesRepository: NotesRepository;
 
-  let mockNotesRepository: NotesRepository;
+beforeEach(() => {
+  jest.clearAllMocks();
 
-  beforeEach(() => {
-    jest.clearAllMocks();
+  mockNotesRepository = getMockNotesRepository();
+});
+test('should return true', async () => {
+  //arrange
+  const getAllNotesUseCase = new CreateNote(mockNotesRepository);
 
-    mockNotesRepository = new MockNotesRepository();
-  });
-  test('should return true', async () => {
-    //arrange
-    const getAllNotesUseCase = new CreateNote(mockNotesRepository);
+  const expected: NotesResponseModel = {
+    id: '0',
+    content: '',
+    important: false,
+  };
 
-    const expected: NotesResponseModel = {
-      id: '0',
-      content: '',
-      important: false,
-    };
+  jest
+    .spyOn(mockNotesRepository, 'createNote')
+    .mockImplementation(() => Promise.resolve(expected));
 
-    jest
-      .spyOn(mockNotesRepository, 'createNote')
-      .mockImplementation(() => Promise.resolve(expected));
+  //act
+  const result = await getAllNotesUseCase.execute(expected);
 
-    //act
-    const result = await getAllNotesUseCase.execute(expected);
-
-    //assert
-    expect(result).toEqual(expected);
-  });
+  //assert
+  expect(result).toEqual(expected);
 });
