@@ -3,6 +3,7 @@ import DeleteNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/de
 import GetAllNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-all-notes-use-case';
 import GetOneNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-one-note-use-case';
 import UpdateNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/update-note-use-case';
+import { getMockDeleteNoteUseCase } from '../../helpers/notesRouterHelper';
 
 describe('Note Router', () => {
   let mockDeleteNoteUseCase: DeleteNoteUseCase;
@@ -11,7 +12,9 @@ describe('Note Router', () => {
   let mockGelAllNotesUseCase: GetAllNotesUseCase;
   let mockGetOneNoteUseCase: GetOneNotesUseCase;
 
-  beforeAll(() => {});
+  beforeAll(() => {
+    mockDeleteNoteUseCase = getMockDeleteNoteUseCase();
+  });
 
   describe('first', () => {
     it('first', () => {

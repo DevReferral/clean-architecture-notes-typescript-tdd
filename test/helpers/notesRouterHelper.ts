@@ -39,17 +39,21 @@ class MockGetAllNotesUseCase implements GetAllNotesUseCase {
 }
 
 export const getMockGetOneNoteUseCase = () => {
-  new MockGetOneNoteUseCase();
+  return new MockGetOneNoteUseCase();
 };
 
 export const getMockGetAllNotesUseCase = () => {
-  new MockGetAllNotesUseCase();
+  return new MockGetAllNotesUseCase();
 };
 
 export const getMockUpdateNoteUseCase = () => {
-  new MockUpdateNoteUseCase();
+  return new MockUpdateNoteUseCase();
 };
 
 export const getMockCreateNoteUseCase = () => {
-  new MockCreateNoteUseCase();
+  return new MockCreateNoteUseCase();
+};
+
+export const getMockDeleteNoteUseCase = () => {
+  return new MockDeleteNoteUseCase();
 };
