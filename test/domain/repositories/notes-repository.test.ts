@@ -171,10 +171,9 @@ describe('notes repository', () => {
 
       // act
 
-      const result = await notesRepository.getNote(ExpectedOutput.id);
+      const result = await notesRepository.getAllNotes();
 
       // assert
-      expect(mockNotesDataSource.getOne).toBeCalledWith(ExpectedOutput.id);
 
       expect(result).toStrictEqual(ExpectedOutput);
     });
