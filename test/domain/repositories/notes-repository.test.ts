@@ -93,13 +93,29 @@ describe('notes repository', () => {
     });
   });
 
-  describe('delete note', () => {});
+  describe('delete note', () => {
+    it('gives void when deleting node with given id', async () => {
+      // arrange
+      const notesRepository = getNotesRepository(mockNotesDataSource);
+
+      jest
+        .spyOn(mockNotesDataSource, 'deleteOne')
+        .mockImplementation(() => Promise.resolve());
+
+      // act
+
+      const result = await notesRepository.deleteNote('1');
+
+      // assert
+      expect(mockNotesDataSource.deleteOne).toBeCalledWith('1');
+
+      expect(result).toBeFalsy();
+    });
+  });
 
   describe('get one', () => {
     describe('when note with id is present', () => {
       it('gets note with given id', async () => {
-        // arrange
-
         // arrange
         const notesRepository = getNotesRepository(mockNotesDataSource);
 
