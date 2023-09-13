@@ -123,6 +123,32 @@ describe('notes repository', () => {
         expect(result).toStrictEqual(ExpectedOutput);
       });
     });
+
+    describe('when not with id is not present', () => {
+      it('gets null as return value', async () => {
+        // arrange
+        const notesRepository = getNotesRepository(mockNotesDataSource);
+
+        const ExpectedOutput: NotesResponseModel = {
+          id: '2',
+          content: 'changed',
+          important: true,
+        };
+
+        jest
+          .spyOn(mockNotesDataSource, 'getOne')
+          .mockImplementation(() => Promise.resolve(null));
+
+        // act
+
+        const result = await notesRepository.getNote(ExpectedOutput.id);
+
+        // assert
+        expect(mockNotesDataSource.getOne).toBeCalledWith(ExpectedOutput.id);
+
+        expect(result).toEqual(null);
+      });
+    });
   });
 });
 
