@@ -51,6 +51,7 @@ describe('notes repository', () => {
       const result = await notesRepository.createNote(Expected);
 
       // assert
+      expect(mockNotesDataSource.create).toBeCalledWith(Expected);
 
       expect(result).toStrictEqual(Expected);
     });
