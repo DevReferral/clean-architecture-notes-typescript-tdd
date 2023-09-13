@@ -28,9 +28,4 @@ export default class NotesRepositoryImpl implements NotesRepository {
 
     return result;
   }
-  async getNotes(): Promise<NotesResponseModel[]> {
-    const result = await this.notesDataSource.getAll();
-
-    return result;
-  }
 }
