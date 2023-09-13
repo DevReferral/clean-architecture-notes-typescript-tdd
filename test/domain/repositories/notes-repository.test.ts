@@ -5,7 +5,7 @@ import {
 } from '../../../src/domain/models/notes';
 import NotesRepositoryImpl from '../../../src/domain/repositories/notes-repository';
 
-describe('contacts repository', () => {
+describe('notes repository', () => {
   class MockNotesDataSource implements NotesDataSource {
     create(note: NotesRequestModel): Promise<NotesResponseModel> {
       throw new Error('Method not implemented.');
@@ -31,13 +31,24 @@ describe('contacts repository', () => {
     mockNotesDataSource = new MockNotesDataSource();
   });
 
-  it('is defined', () => {
-    // arrange
+  describe('create note', () => {
+    it('is defined', () => {
+      // arrange
+      const sut = getNotesRepository(mockNotesDataSource);
+      const Expected: NotesResponseModel = {
+        id: '2',
+        content: 'hi',
+        important: false,
+      };
 
-    const sut = getNotesRepository(mockNotesDataSource);
-    // act
+      jest
+        .spyOn(sut, 'createNote')
+        .mockImplementation(() => Promise.resolve(Expected));
 
-    // assert
+      // act
+
+      // assert
+    });
   });
 });
 
