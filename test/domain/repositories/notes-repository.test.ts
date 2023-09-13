@@ -4,31 +4,14 @@ import {
   NotesResponseModel,
 } from '../../../src/domain/models/notes';
 import NotesRepositoryImpl from '../../../src/domain/repositories/notes-repository';
+import { getMockNotesDataSource } from './helpers/notesRepositoryHelper';
 
 describe('notes repository', () => {
-  class MockNotesDataSource implements NotesDataSource {
-    create(note: NotesRequestModel): Promise<NotesResponseModel> {
-      throw new Error('Method not implemented.');
-    }
-    getOne(id: string): Promise<NotesResponseModel | null> {
-      throw new Error('Method not implemented.');
-    }
-    updateOne(
-      id: string,
-      data: NotesRequestModel
-    ): Promise<NotesResponseModel> {
-      throw new Error('Method not implemented.');
-    }
-    deleteOne(id: string): Promise<void> {
-      throw new Error('Method not implemented.');
-    }
-  }
-
   let mockNotesDataSource: NotesDataSource;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mockNotesDataSource = new MockNotesDataSource();
+    mockNotesDataSource = getMockNotesDataSource();
   });
 
   describe('create note', () => {
