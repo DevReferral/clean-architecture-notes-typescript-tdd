@@ -27,7 +27,7 @@ describe('Create Note use case', () => {
     }
   }
 
-  let mockNotesRepository: MockNotesRepository;
+  let mockNotesRepository: NotesRepository;
 
   beforeEach(() => {
     jest.clearAllMocks();
