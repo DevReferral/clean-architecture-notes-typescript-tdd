@@ -32,28 +32,33 @@ describe('notes repository', () => {
   });
 
   describe('create note', () => {
-    it('is defined', async () => {
+    it('creates a new note', async () => {
       // arrange
       const notesRepository = getNotesRepository(mockNotesDataSource);
 
-      const Expected: NotesResponseModel = {
+      const ExpectedOutput: NotesResponseModel = {
         id: '2',
+        content: 'hi',
+        important: false,
+      };
+
+      const ExpectedInput: Omit<NotesResponseModel, 'id'> = {
         content: 'hi',
         important: false,
       };
 
       jest
         .spyOn(mockNotesDataSource, 'create')
-        .mockImplementation(() => Promise.resolve(Expected));
+        .mockImplementation(() => Promise.resolve(ExpectedOutput));
 
       // act
 
-      const result = await notesRepository.createNote(Expected);
+      const result = await notesRepository.createNote(ExpectedInput);
 
       // assert
-      expect(mockNotesDataSource.create).toBeCalledWith(Expected);
+      expect(mockNotesDataSource.create).toBeCalledWith(ExpectedInput);
 
-      expect(result).toStrictEqual(Expected);
+      expect(result).toStrictEqual(ExpectedOutput);
     });
   });
 });
