@@ -4,7 +4,7 @@ import GetAllNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/g
 import GetOneNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-one-note-use-case';
 import UpdateNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/update-note-use-case';
 
-describe.skip('Note Router', () => {
+describe('Note Router', () => {
   let mockDeleteNoteUseCase: DeleteNoteUseCase;
   let mockCreateNoteUseCase: CreateNoteUseCase;
   let mockUpdateNoteUseCase: UpdateNoteUseCase;
@@ -14,6 +14,8 @@ describe.skip('Note Router', () => {
   beforeAll(() => {});
 
   describe('first', () => {
-    expect(true).toBeTruthy();
+    it('first', () => {
+      expect(true).toBeTruthy();
+    });
   });
 });
