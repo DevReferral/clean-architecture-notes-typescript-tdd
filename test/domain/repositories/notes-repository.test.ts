@@ -62,7 +62,36 @@ describe('notes repository', () => {
     });
   });
 
-  describe('update note', () => {});
+  describe('update note', () => {
+    it('updates a note', async () => {
+      // arrange
+      const notesRepository = getNotesRepository(mockNotesDataSource);
+
+      const ExpectedOutput: NotesResponseModel = {
+        id: '2',
+        content: 'changed',
+        important: true,
+      };
+
+      const ExpectedInput: Omit<NotesResponseModel, 'id'> = {
+        content: 'original',
+        important: false,
+      };
+
+      jest
+        .spyOn(mockNotesDataSource, 'updateOne')
+        .mockImplementation(() => Promise.resolve(ExpectedOutput));
+
+      // act
+
+      const result = await notesRepository.updateNote('2', ExpectedInput);
+
+      // assert
+      expect(mockNotesDataSource.updateOne).toBeCalledWith('2', ExpectedInput);
+
+      expect(result).toStrictEqual(ExpectedOutput);
+    });
+  });
 
   describe('delete note', () => {});
 
