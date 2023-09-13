@@ -1,12 +1,11 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
-
 import {
   NotesRequestModel,
   NotesResponseModel,
 } from '../../../../src/domain/models/notes';
-import GetAllNotes from '../../../../src/domain/use-cases/get-all-notes';
+import DeleteNote from '../../../../src/domain/use-cases/delete-note';
 
-describe('Get all notes use case', () => {
+describe('Create Note use case', () => {
   class MockNotesRepository implements NotesRepository {
     createNote(note: NotesRequestModel): Promise<NotesResponseModel> {
       throw new Error('Method not implemented.');
@@ -35,24 +34,20 @@ describe('Get all notes use case', () => {
 
     mockNotesRepository = new MockNotesRepository();
   });
-
-  test('should return notes', async () => {
+  test('should return void', async () => {
     //arrange
-    const ExpectedResult: NotesResponseModel[] = [
-      { id: '1', content: 'first', important: true },
-      { id: '2', content: 'second', important: false },
-    ];
+    const deleteNoteUseCase = new DeleteNote(mockNotesRepository);
+
+    const id = '0';
+
+    jest
+      .spyOn(mockNotesRepository, 'deleteNote')
+      .mockImplementation(() => Promise.resolve());
 
     //act
-    jest
-      .spyOn(mockNotesRepository, 'getNotes')
-      .mockImplementation(() => Promise.resolve(ExpectedResult));
-
-    const getAllNotesUseCase = new GetAllNotes(mockNotesRepository);
-
-    const result = await getAllNotesUseCase.execute();
+    const result = await deleteNoteUseCase.execute(id);
 
     //assert
-    expect(result).toStrictEqual(ExpectedResult);
+    expect(result).toBeFalsy();
   });
 });

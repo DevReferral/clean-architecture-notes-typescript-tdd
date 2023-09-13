@@ -1,5 +1,5 @@
 export type NotesResponseModel = {
-  id: number;
+  id: string;
   content: string;
   important: boolean;
 };
