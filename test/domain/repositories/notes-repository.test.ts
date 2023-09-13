@@ -95,7 +95,29 @@ describe('notes repository', () => {
 
   describe('delete note', () => {});
 
-  describe('', () => {});
+  describe('get one', async () => {
+    // arrange
+    const notesRepository = getNotesRepository(mockNotesDataSource);
+
+    const ExpectedOutput: NotesResponseModel = {
+      id: '2',
+      content: 'changed',
+      important: true,
+    };
+
+    jest
+      .spyOn(mockNotesDataSource, 'getOne')
+      .mockImplementation(() => Promise.resolve(ExpectedOutput));
+
+    // act
+
+    const result = await notesRepository.getNote(ExpectedOutput.id);
+
+    // assert
+    expect(mockNotesDataSource.getOne).toBeCalledWith(ExpectedOutput.id);
+
+    expect(result).toStrictEqual(ExpectedOutput);
+  });
 });
 
 const getNotesRepository = (notesDataSource: NotesDataSource) => {
