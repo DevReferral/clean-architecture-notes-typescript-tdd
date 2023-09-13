@@ -2,5 +2,6 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testPathIgnorePatterns: './test/**/helpers',
+  collectCoverage: true,
+  collectCoverageFrom: ['test/**/*.ts', '!test/**/helpers/**'],
 };
