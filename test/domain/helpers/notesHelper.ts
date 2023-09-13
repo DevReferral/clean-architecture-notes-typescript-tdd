@@ -1,8 +1,8 @@
-import NotesRepository from '../../src/domain/interfaces/repositories/notes-repository';
+import NotesRepository from '../../../src/domain/interfaces/repositories/notes-repository';
 import {
   NotesRequestModel,
   NotesResponseModel,
-} from '../../src/domain/models/notes';
+} from '../../../src/domain/models/notes';
 
 class MockNotesRepository implements NotesRepository {
   createNote(note: NotesRequestModel): Promise<NotesResponseModel> {

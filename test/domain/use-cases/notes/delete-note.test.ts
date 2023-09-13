@@ -1,6 +1,6 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
 import DeleteNote from '../../../../src/domain/use-cases/delete-note';
-import { getMockNotesRepository } from '../../../helpers/notesHelper';
+import { getMockNotesRepository } from '../../helpers/notesHelper';
 
 describe('Create Note use case', () => {
   let mockNotesRepository: NotesRepository;
