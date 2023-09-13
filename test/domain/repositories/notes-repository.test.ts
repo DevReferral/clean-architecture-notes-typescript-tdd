@@ -1,8 +1,5 @@
 import { NotesDataSource } from '../../../src/data/interfaces/notes-data-source';
-import {
-  NotesRequestModel,
-  NotesResponseModel,
-} from '../../../src/domain/models/notes';
+import { NotesResponseModel } from '../../../src/domain/models/notes';
 import NotesRepositoryImpl from '../../../src/domain/repositories/notes-repository';
 import { getMockNotesDataSource } from '../../helpers/notesRepositoryHelper';
 
