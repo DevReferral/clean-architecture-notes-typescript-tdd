@@ -45,3 +45,11 @@ export const getMockGetOneNoteUseCase = () => {
 export const getMockGetAllNotesUseCase = () => {
   new MockGetAllNotesUseCase();
 };
+
+export const getMockUpdateNoteUseCase = () => {
+  new MockUpdateNoteUseCase();
+};
+
+export const getMockCreateNoteUseCase = () => {
+  new MockCreateNoteUseCase();
+};
