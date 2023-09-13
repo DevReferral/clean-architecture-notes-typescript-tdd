@@ -3,8 +3,10 @@ import NotesRepository from '../interfaces/repositories/notes-repository';
 import { NotesRequestModel, NotesResponseModel } from '../models/notes';
 export default class NotesRepositoryImpl implements NotesRepository {
   constructor(private readonly notesDataSource: NotesDataSource) {}
-  getAllNotes(): Promise<NotesResponseModel[]> {
-    throw new Error('Method not implemented.');
+  async getAllNotes(): Promise<NotesResponseModel[]> {
+    const result = await this.notesDataSource.getAll();
+
+    return result;
   }
   async createNote(note: NotesRequestModel): Promise<NotesResponseModel> {
     const result = await this.notesDataSource.create(note);
