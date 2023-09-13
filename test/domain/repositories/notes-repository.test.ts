@@ -32,9 +32,10 @@ describe('notes repository', () => {
   });
 
   describe('create note', () => {
-    it('is defined', () => {
+    it('is defined', async () => {
       // arrange
-      const sut = getNotesRepository(mockNotesDataSource);
+      const notesRepository = getNotesRepository(mockNotesDataSource);
+
       const Expected: NotesResponseModel = {
         id: '2',
         content: 'hi',
@@ -42,12 +43,16 @@ describe('notes repository', () => {
       };
 
       jest
-        .spyOn(sut, 'createNote')
+        .spyOn(mockNotesDataSource, 'create')
         .mockImplementation(() => Promise.resolve(Expected));
 
       // act
 
+      const result = await notesRepository.createNote(Expected);
+
       // assert
+
+      expect(result).toStrictEqual(Expected);
     });
   });
 });
