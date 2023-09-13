@@ -12,4 +12,8 @@ describe.skip('Note Router', () => {
   let mockGetOneNoteUseCase: GetOneNotesUseCase;
 
   beforeAll(() => {});
+
+  describe('first', () => {
+    expect(true).toBeTruthy();
+  });
 });

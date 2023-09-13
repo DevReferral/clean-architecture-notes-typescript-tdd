@@ -1,9 +1,5 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
-
-import {
-  NotesRequestModel,
-  NotesResponseModel,
-} from '../../../../src/domain/models/notes';
+import { NotesResponseModel } from '../../../../src/domain/models/notes';
 import GetAllNotes from '../../../../src/domain/use-cases/get-all-notes';
 import { getMockNotesRepository } from './helpers/notesHelper';
 
