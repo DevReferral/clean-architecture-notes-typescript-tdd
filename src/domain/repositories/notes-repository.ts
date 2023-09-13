@@ -17,8 +17,10 @@ export default class NotesRepositoryImpl implements NotesRepository {
     const result = await this.notesDataSource.updateOne(id, data);
     return result;
   }
-  getNote(id: string): Promise<NotesResponseModel | null> {
-    throw new Error('Method not implemented.');
+  async getNote(id: string): Promise<NotesResponseModel | null> {
+    const result = await this.notesDataSource.getOne(id);
+
+    return result;
   }
   getNotes(): Promise<NotesResponseModel[]> {
     throw new Error('Method not implemented.');
