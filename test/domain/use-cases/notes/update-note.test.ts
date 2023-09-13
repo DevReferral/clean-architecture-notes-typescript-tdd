@@ -4,7 +4,7 @@ import {
   NotesResponseModel,
 } from '../../../../src/domain/models/notes';
 import UpdateNote from '../../../../src/domain/use-cases/update-note';
-import { getMockNotesRepository } from '../../helpers/notesHelper';
+import { getMockNotesRepository } from '../../../helpers/notesHelper';
 
 describe('Create Note use case', () => {
   let mockNotesRepository: NotesRepository;
