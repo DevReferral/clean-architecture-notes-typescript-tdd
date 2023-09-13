@@ -61,6 +61,12 @@ describe('notes repository', () => {
       expect(result).toStrictEqual(ExpectedOutput);
     });
   });
+
+  describe('update note', () => {});
+
+  describe('delete note', () => {});
+
+  describe('', () => {});
 });
 
 const getNotesRepository = (notesDataSource: NotesDataSource) => {
