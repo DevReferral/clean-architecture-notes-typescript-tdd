@@ -3,6 +3,8 @@ import DeleteNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/de
 import GetAllNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-all-notes-use-case';
 import GetOneNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-one-note-use-case';
 import UpdateNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/update-note-use-case';
+import NotesRouter from '../../../src/presentation/routers/notes-router';
+import server from '../../../src/server';
 import {
   getMockCreateNoteUseCase,
   getMockDeleteNoteUseCase,
@@ -24,6 +26,21 @@ describe('Note Router', () => {
     mockUpdateNoteUseCase = getMockUpdateNoteUseCase();
     mockGetAllNotesUseCase = getMockGetAllNotesUseCase();
     mockGetOneNoteUseCase = getMockGetOneNoteUseCase();
+
+    server.use(
+      '/notes',
+      NotesRouter(
+        mockDeleteNoteUseCase,
+        mockCreateNoteUseCase,
+        mockUpdateNoteUseCase,
+        mockGetAllNotesUseCase,
+        mockGetOneNoteUseCase
+      )
+    );
+  });
+
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
   describe('first', () => {
