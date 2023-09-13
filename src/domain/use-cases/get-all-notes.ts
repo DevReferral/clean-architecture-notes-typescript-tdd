@@ -6,7 +6,7 @@ export default class GetAllNotes implements GetAllNotesUseCase {
   constructor(private readonly notesRepository: NotesRepository) {}
 
   async execute(): Promise<NotesResponseModel[]> {
-    const notes = await this.notesRepository.getNotes();
+    const notes = await this.notesRepository.getAllNotes();
 
     return notes;
   }

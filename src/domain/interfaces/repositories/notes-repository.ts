@@ -5,5 +5,5 @@ export default interface NotesRepository {
   deleteNote(id: string): Promise<void>;
   updateNote(id: string, data: NotesRequestModel): Promise<NotesResponseModel>;
   getNote(id: string): Promise<NotesResponseModel | null>;
-  getNotes(): Promise<NotesResponseModel[]>;
+  getAllNotes(): Promise<NotesResponseModel[]>;
 }

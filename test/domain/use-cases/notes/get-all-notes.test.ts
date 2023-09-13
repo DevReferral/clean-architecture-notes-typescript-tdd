@@ -21,7 +21,7 @@ describe('Get all notes use case', () => {
 
     //act
     jest
-      .spyOn(mockNotesRepository, 'getNotes')
+      .spyOn(mockNotesRepository, 'getAllNotes')
       .mockImplementation(() => Promise.resolve(ExpectedResult));
 
     const getAllNotesUseCase = new GetAllNotes(mockNotesRepository);

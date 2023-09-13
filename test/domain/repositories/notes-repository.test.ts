@@ -146,6 +146,39 @@ describe('notes repository', () => {
       });
     });
   });
+
+  describe('get all notes', () => {
+    it('get all notes ', async () => {
+      // arrange
+      const notesRepository = getNotesRepository(mockNotesDataSource);
+
+      const ExpectedOutput: NotesResponseModel[] = [
+        {
+          id: '1',
+          content: 'first',
+          important: false,
+        },
+        {
+          id: '2',
+          content: 'changed',
+          important: true,
+        },
+      ];
+
+      jest
+        .spyOn(mockNotesDataSource, 'getAll')
+        .mockImplementation(() => Promise.resolve(ExpectedOutput));
+
+      // act
+
+      const result = await notesRepository.getNote(ExpectedOutput.id);
+
+      // assert
+      expect(mockNotesDataSource.getOne).toBeCalledWith(ExpectedOutput.id);
+
+      expect(result).toStrictEqual(ExpectedOutput);
+    });
+  });
 });
 
 const getNotesRepository = (notesDataSource: NotesDataSource) => {

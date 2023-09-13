@@ -5,6 +5,9 @@ import {
   NotesResponseModel,
 } from '../../src/domain/models/notes';
 class MockNotesDataSource implements NotesDataSource {
+  getAll(): Promise<NotesResponseModel[]> {
+    throw new Error('Method not implemented.');
+  }
   create(note: NotesRequestModel): Promise<NotesResponseModel> {
     throw new Error('Method not implemented.');
   }

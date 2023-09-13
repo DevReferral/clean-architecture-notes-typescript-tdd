@@ -6,6 +6,9 @@ import {
 } from '../../src/domain/models/notes';
 
 class MockNotesRepository implements NotesRepository {
+  getNotes(): Promise<NotesResponseModel[]> {
+    throw new Error('Method not implemented.');
+  }
   createNote(note: NotesRequestModel): Promise<NotesResponseModel> {
     throw new Error('Method not implemented.');
   }
@@ -18,7 +21,7 @@ class MockNotesRepository implements NotesRepository {
   getNote(id: string): Promise<NotesResponseModel | null> {
     throw new Error('Method not implemented.');
   }
-  getNotes(): Promise<NotesResponseModel[]> {
+  getAllNotes(): Promise<NotesResponseModel[]> {
     throw new Error('Method not implemented.');
   }
 }
