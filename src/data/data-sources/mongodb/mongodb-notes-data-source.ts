@@ -21,7 +21,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
 
     return {
       id: item._id.toString(),
-      content: item.name,
+      content: item.content,
       important: item.important,
     };
   }
@@ -31,7 +31,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     console.log('got datasource result', item);
     return {
       id: item._id.toString(),
-      content: item.name,
+      content: item.content,
       important: item.important,
     };
   }
@@ -43,7 +43,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
 
     return {
       id: item._id.toString(),
-      content: item.name,
+      content: item.content,
       important: item.important,
     };
   }
