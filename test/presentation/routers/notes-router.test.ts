@@ -177,4 +177,18 @@ describe('Note Router', () => {
       expect(response.body).toStrictEqual({ message: 'Error updating note' });
     });
   });
+
+  describe('DELETE /notes/:id', () => {
+    it('deletes the note and returns void', async () => {
+      const deleteId = '1';
+
+      jest
+        .spyOn(mockDeleteNoteUseCase, 'execute')
+        .mockImplementation(() => Promise.resolve());
+
+      await request(server).delete(`/notes/${deleteId}`);
+
+      expect(mockUpdateNoteUseCase.execute).toBeCalledWith(deleteId);
+    });
+  });
 });
