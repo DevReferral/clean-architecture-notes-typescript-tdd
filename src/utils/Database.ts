@@ -1,16 +1,19 @@
 import * as dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import utils from '../utils';
 
 dotenv.config();
 export default class Database {
   private static _database: Database;
   private constructor() {
-    const dbUrl = utils.MONGO_DB_URI;
+    const DB_URL = utils.MONGO_DB_URI;
 
-    if (dbUrl) {
+    if (DB_URL) {
       mongoose
-        .connect(dbUrl)
+        .connect(DB_URL, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        } as ConnectOptions)
         .then(() => console.log('✅ Connected with database'))
         .catch(() => console.error('❌ Not connected with database'));
     }
