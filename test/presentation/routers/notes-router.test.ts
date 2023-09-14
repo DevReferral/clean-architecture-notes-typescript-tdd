@@ -113,6 +113,7 @@ describe('Note Router', () => {
         id: '1',
         important: true,
       };
+      const response = await request(server).post('/notes').send(expectedData);
 
       expect(mockCreateNoteUseCase.execute).toBeCalledWith(expectedData);
 
