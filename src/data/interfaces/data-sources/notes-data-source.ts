@@ -8,5 +8,5 @@ export default interface NotesDataSource {
   getOne(id: string): Promise<NotesResponseModel | null>;
   create(note: NotesRequestModel): Promise<NotesResponseModel>;
   updateOne(id: string, data: NotesRequestModel): Promise<NotesResponseModel>;
-  deleteOne(id: string): void;
+  deleteOne(id: string): Promise<void>;
 }
