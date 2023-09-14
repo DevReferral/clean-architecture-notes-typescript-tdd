@@ -24,5 +24,15 @@ export default function NotesRouter(
     }
   });
 
+  router.get('/:id', async (req: Request, res: Response) => {
+    try {
+      const note = await getOneNoteUseCase.execute(req.params.id);
+
+      res.json(note);
+    } catch (err) {
+      res.status(500).send({ message: 'Error fetching notes' });
+    }
+  });
+
   return router;
 }
