@@ -7,8 +7,9 @@ export default class Database {
   private static _database: Database;
   private constructor() {
     const dbUrl = utils.MONGO_DB_URI!;
-    if (dbUrl) {
+
       (async () => {
+            if (dbUrl) {
         await mongoose.connect(dbUrl, {
           useNewUrlParser: true,
           useUnifiedTopology: true,
@@ -24,7 +25,10 @@ export default class Database {
           )
         );
         db.once('open', () => console.log('✅ Connected with database'));
+          }
       })();
+
+
     }
   }
   static connect() {
