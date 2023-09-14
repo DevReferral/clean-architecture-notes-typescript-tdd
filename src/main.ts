@@ -1,16 +1,11 @@
-import { ConnectOptions, MongoClient } from 'mongodb';
-import { MongoMemoryServer } from 'mongodb-memory-server';
-import mongoose from 'mongoose';
 import MongoDbNotesDataSource from './data/data-sources/mongodb/mongodb-notes-data-source';
 import Note from './data/data-sources/mongodb/schemas/Note';
 import NoSqlDatabaseWrapper from './data/interfaces/data-sources/nosql-database-wrapper';
-import NotesDataSource from './data/interfaces/data-sources/notes-data-source';
-import utils from './utils';
+
 import Database from './utils/Database';
-import { connect } from './utils/testing_db';
 
 async function getMongoDS() {
-  const db = Database.getInstance();
+  Database.connect();
 
   const notesDatabase: NoSqlDatabaseWrapper = {
     find: function (query: object): Promise<any[]> {

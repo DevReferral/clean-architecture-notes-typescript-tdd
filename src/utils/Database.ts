@@ -12,7 +12,7 @@ export default class Database {
         .catch(() => console.log('Not connected with database'));
     }
   }
-  static getInstance() {
+  static connect() {
     if (this._database) {
       return this._database;
     }
