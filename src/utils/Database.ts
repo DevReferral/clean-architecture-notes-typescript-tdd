@@ -7,7 +7,7 @@ export default class Database {
   private static _database: Database;
   private constructor() {
     const DB_URL = utils.MONGO_DB_URI;
-
+    if (process.env.NODE_ENV === 'dev') mongoose.set('debug', true);
     if (DB_URL) {
       mongoose
         .connect(DB_URL, {
