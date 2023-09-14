@@ -7,6 +7,7 @@ export class CreateNote implements CreateNoteUseCase {
   async execute(note: NotesRequestModel): Promise<NotesResponseModel> {
     const result = await this.notesRepository.createNote(note);
 
+    console.log('create note use case', JSON.stringify(result));
     return result;
   }
 }
