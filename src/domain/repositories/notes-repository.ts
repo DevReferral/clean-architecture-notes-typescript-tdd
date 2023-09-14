@@ -9,6 +9,7 @@ export default class NotesRepositoryImpl implements NotesRepository {
     return result;
   }
   async createNote(note: NotesRequestModel): Promise<NotesResponseModel> {
+    console.log('note got in notes repository', JSON.stringify(note));
     const result = await this.notesDataSource.create(note);
     return result;
   }
