@@ -17,19 +17,34 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     }));
   }
   async getOne(id: string): Promise<NotesResponseModel | null> {
-    const result = await this.db.find({ _id: id });
+    const item = await this.db.findOne(id);
 
-    return result.map((item) => ({
+    return {
       id: item._id.toString(),
       content: item.name,
       important: item.important,
-    }))[0];
+    };
   }
-  create(note: NotesRequestModel): Promise<NotesResponseModel> {
-    throw new Error('Method not implemented.');
+  async create(note: NotesRequestModel): Promise<NotesResponseModel> {
+    const item = await this.db.insertOne(note);
+
+    return {
+      id: item._id.toString(),
+      content: item.name,
+      important: item.important,
+    };
   }
-  updateOne(id: string, data: NotesRequestModel): Promise<NotesResponseModel> {
-    throw new Error('Method not implemented.');
+  async updateOne(
+    id: string,
+    data: NotesRequestModel
+  ): Promise<NotesResponseModel> {
+    const item = await this.db.updateOne(id, data);
+
+    return {
+      id: item._id.toString(),
+      content: item.name,
+      important: item.important,
+    };
   }
   deleteOne(id: string): Promise<void> {
     throw new Error('Method not implemented.');
