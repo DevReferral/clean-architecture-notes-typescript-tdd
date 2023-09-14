@@ -73,4 +73,36 @@ describe('Note Router', () => {
       expect(response.body).toStrictEqual({ message: 'Error fetching notes' });
     });
   });
+  describe('GET /notes/:id', () => {
+    it('should return 200 with data', async () => {
+      const expectedData: NotesResponseModel = {
+        content: 'c',
+        id: '1',
+        important: true,
+      };
+
+      jest
+        .spyOn(mockGetOneNoteUseCase, 'execute')
+        .mockImplementation(() => Promise.resolve(expectedData));
+
+      //call the api endpoint
+
+      const response = await request(server).get('/notes/1');
+
+      expect(response.status).toBe(200);
+    });
+
+    it('returns 500 on use case error', async () => {
+      jest
+        .spyOn(mockGetAllNotesUseCase, 'execute')
+        .mockImplementation(() => Promise.reject(Error()));
+
+      const response = await request(server).get('/notes');
+
+      expect(response.status).toBe(500);
+      expect(response.body).toStrictEqual({
+        message: 'Error fetching notes',
+      });
+    });
+  });
 });
