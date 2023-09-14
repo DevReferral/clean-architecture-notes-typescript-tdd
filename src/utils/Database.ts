@@ -4,38 +4,26 @@ import utils from '../utils';
 
 dotenv.config();
 export default class Database {
-  private static _database: Database;
-
-  private constructor() {
+  static async connect() {
     const dbUrl = utils.MONGO_DB_URI!;
+    if (dbUrl) {
+      await mongoose.connect(dbUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      } as ConnectOptions);
 
-    (async () => {
-      if (dbUrl) {
-        await mongoose.connect(dbUrl, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        } as ConnectOptions);
+      const db = mongoose.connection;
 
-        const db = mongoose.connection;
-
-        db.on(
-          'error',
-          console.error.bind(
-            console,
-            'connection error:❌ Not connected with database'
-          )
-        );
-        db.once('open', () => console.log('✅ Connected with database'));
-      } else {
-        console.error(' ❓ MongoDbUrl not present ~');
-      }
-    })();
-  }
-  static connect() {
-    if (this._database) {
-      return this._database;
+      db.on(
+        'error',
+        console.error.bind(
+          console,
+          'connection error:❌ Not connected with database'
+        )
+      );
+      db.once('open', () => console.log('✅ Connected with database'));
+    } else {
+      console.error(' ❓ MongoDbUrl not present ~');
     }
-    this._database = new Database();
-    return (this._database = new Database());
   }
 }
