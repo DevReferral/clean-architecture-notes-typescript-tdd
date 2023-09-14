@@ -1,4 +1,4 @@
-import { NotesDataSource } from '../../src/data/interfaces/data-soures/notes-data-source';
+import { NotesDataSource } from '../../src/data/interfaces/data-sources/notes-data-source';
 
 import {
   NotesRequestModel,

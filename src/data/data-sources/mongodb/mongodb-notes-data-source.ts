@@ -2,8 +2,8 @@ import {
   NotesRequestModel,
   NotesResponseModel,
 } from '../../../domain/models/notes';
-import NoSqlDatabaseWrapper from '../../interfaces/data-soures/nosql-databse-wrapper';
-import { NotesDataSource } from '../../interfaces/data-soures/notes-data-source';
+import NoSqlDatabaseWrapper from '../../interfaces/data-sources/nosql-database-wrapper';
+import { NotesDataSource } from '../../interfaces/data-sources/notes-data-source';
 
 export default class MongoDbNotesDataSource implements NotesDataSource {
   constructor(private readonly db: NoSqlDatabaseWrapper) {}
@@ -46,7 +46,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
       important: item.important,
     };
   }
-  deleteOne(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async deleteOne(id: string): Promise<void> {
+    return await this.db.deleteOne(id);
   }
 }
