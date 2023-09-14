@@ -49,7 +49,5 @@ async function getMongoDS() {
   );
 
   server.use('/notes', notesRouter);
-  server.listen(utils.PORT, () =>
-    console.log('Running on http://localhost:4000')
-  );
+  server.listen(utils.PORT, () => console.log(`Running on ${utils.PORT}`));
 })();
