@@ -21,7 +21,7 @@ class MockDeleteNoteUseCase implements DeleteNoteUseCase {
 }
 
 class MockUpdateNoteUseCase implements UpdateNoteUseCase {
-  expect(id: string, note: NotesRequestModel): Promise<NotesResponseModel> {
+  execute(id: string, note: NotesRequestModel): Promise<NotesResponseModel> {
     throw new Error('Method not implemented.');
   }
 }
