@@ -2,7 +2,7 @@ import {
   NotesRequestModel,
   NotesResponseModel,
 } from '../../../domain/models/notes';
-import NoSqlDatabaseWrapper from '../../interfaces/data-sources/nosql-database-wrapper';
+import NoSqlDatabaseWrapper from '../../interfaces/data-sources/no-sql-database-wrapper';
 import NotesDataSource from '../../interfaces/data-sources/notes-data-source';
 
 export default class MongoDbNotesDataSource implements NotesDataSource {
@@ -28,7 +28,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
   async create(note: NotesRequestModel): Promise<NotesResponseModel> {
     console.log('got note in data source create', JSON.stringify(note));
     const item = await this.db.insertOne(note);
-    console.log('got datasource result', item);
+    console.log('got data source result', item);
     return {
       id: item._id.toString(),
       content: item.content,
