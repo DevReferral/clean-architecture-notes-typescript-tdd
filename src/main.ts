@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import MongoDbNotesDataSource from './data/data-sources/mongodb/mongodb-notes-data-source';
 import Note from './data/data-sources/mongodb/schemas/Note';
 import NoSqlDatabaseWrapper from './data/interfaces/data-sources/nosql-database-wrapper';
@@ -9,6 +10,7 @@ import GetOneNote from './domain/use-cases/get-one-note';
 import UpdateNote from './domain/use-cases/update-note';
 import NotesRouter from './presentation/routers/notes-router';
 import server from './server';
+dotenv.config();
 
 import Database from './utils/Database';
 
