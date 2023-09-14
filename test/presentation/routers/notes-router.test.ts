@@ -113,8 +113,13 @@ describe('Note Router', () => {
         id: '1',
         important: true,
       };
+      jest
+        .spyOn(mockCreateNoteUseCase, 'execute')
+        .mockImplementation(() => Promise.resolve(expectedData));
+
       const response = await request(server).post('/notes').send(expectedData);
 
+      expect(response.status).toBe(201);
       expect(mockCreateNoteUseCase.execute).toBeCalledWith(expectedData);
 
       // jest
