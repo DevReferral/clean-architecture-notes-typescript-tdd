@@ -36,8 +36,8 @@ async function getMongoDS() {
       });
       return note;
     },
-    deleteOne: function (id: string): void {
-      Note.deleteOne({ _id: id });
+    deleteOne: async function (id: string): Promise<void> {
+      await Note.deleteOne({ _id: id });
     },
   };
 
