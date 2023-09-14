@@ -26,9 +26,8 @@ async function getMongoDS() {
       return note;
     },
     insertOne: async function (data: object): Promise<any> {
-      console.log('🚀 note to be created', data);
       const note = await Note.create(data);
-      console.log('Note Created', JSON.stringify(note));
+
       return note;
     },
     updateOne: async function (id: string, data: object): Promise<any> {
