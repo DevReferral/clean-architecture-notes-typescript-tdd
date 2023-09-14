@@ -14,7 +14,7 @@ import utils from './utils';
 import Database from './utils/Database';
 
 async function getMongoDS() {
-  Database.connect(utils.MONGO_DB_URI!);
+  Database.connect();
 
   const notesDatabase: NoSqlDatabaseWrapper = {
     find: async function (query: object): Promise<any[]> {
