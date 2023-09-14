@@ -1,7 +1,7 @@
-export interface NoSqlDatabaseWrapper {
-  find(query: object): Promise<unknown[]>;
-  findOne(id: string): Promise<unknown | null>;
-  insertOne(data: object): Promise<unknown>;
-  updateOne(id: string, data: object): Promise<unknown>;
+export default interface NoSqlDatabaseWrapper {
+  find(query: object): Promise<any[]>;
+  findOne(id: string): Promise<any | null>;
+  insertOne(data: object): Promise<any>;
+  updateOne(id: string, data: object): Promise<any>;
   deleteOne(id: string): Promise<void>;
 }
