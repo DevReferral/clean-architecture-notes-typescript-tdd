@@ -5,11 +5,12 @@ import utils from '../utils';
 dotenv.config();
 export default class Database {
   private static _database: Database;
+
   private constructor() {
     const dbUrl = utils.MONGO_DB_URI!;
 
-      (async () => {
-            if (dbUrl) {
+    (async () => {
+      if (dbUrl) {
         await mongoose.connect(dbUrl, {
           useNewUrlParser: true,
           useUnifiedTopology: true,
@@ -25,11 +26,10 @@ export default class Database {
           )
         );
         db.once('open', () => console.log('✅ Connected with database'));
-          }
-      })();
-
-
-    }
+      } else {
+        console.error(' ❓ MongoDbUrl not present ~');
+      }
+    })();
   }
   static connect() {
     if (this._database) {
