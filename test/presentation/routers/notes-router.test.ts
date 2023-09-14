@@ -101,7 +101,7 @@ describe('Note Router', () => {
 
       expect(response.status).toBe(500);
       expect(response.body).toStrictEqual({
-        message: 'Note with given id not found',
+        message: 'Note with id not found',
       });
     });
   });

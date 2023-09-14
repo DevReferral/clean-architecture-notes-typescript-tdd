@@ -30,7 +30,7 @@ export default function NotesRouter(
 
       res.json(note);
     } catch (err) {
-      res.status(500).send({ message: 'Note with given id not found' });
+      res.status(500).send({ message: 'Note with id not found' });
     }
   });
 
@@ -40,7 +40,7 @@ export default function NotesRouter(
 
       res.status(201).json(note);
     } catch (err) {
-      res.status(500).send({ message: 'Note not created' });
+      res.status(500).send({ message: 'Error creating note' });
     }
   });
 
