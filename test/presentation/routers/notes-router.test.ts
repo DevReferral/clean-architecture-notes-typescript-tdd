@@ -1,3 +1,4 @@
+import request from 'supertest';
 import CreateNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/create-note-use-case';
 import DeleteNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/delete-note-use-case';
 import GetAllNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-all-notes-use-case';
@@ -13,7 +14,6 @@ import {
   getMockGetOneNoteUseCase,
   getMockUpdateNoteUseCase,
 } from '../../helpers/notesRouterHelper';
-
 describe('Note Router', () => {
   let mockDeleteNoteUseCase: DeleteNoteUseCase;
   let mockCreateNoteUseCase: CreateNoteUseCase;
@@ -44,12 +44,33 @@ describe('Note Router', () => {
     jest.clearAllMocks();
   });
 
-  describe('GET /note', () => {
-    it('should return 200 with data', () => {
+  describe('GET /notes', () => {
+    it('should return 200 with data', async () => {
       const expectedData: NotesResponseModel[] = [
         { content: 'c', id: '1', important: true },
         { content: 'd', id: '2', important: false },
       ];
+
+      jest
+        .spyOn(mockGetAllNotesUseCase, 'execute')
+        .mockImplementation(() => Promise.resolve(expectedData));
+
+      //call the api endpoint
+
+      const response = await request(server).get('/notes');
+
+      expect(response.status).toBe(200);
+    });
+
+    it('returns 500 on use case error', async () => {
+      jest
+        .spyOn(mockGetAllNotesUseCase, 'execute')
+        .mockImplementation(() => Promise.reject(Error()));
+
+      const response = await request(server).get('/notes');
+
+      expect(response.status).toBe(500);
+      expect(response.body).toStrictEqual({ message: 'Error fetching notes' });
     });
   });
 });
