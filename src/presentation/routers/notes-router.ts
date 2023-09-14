@@ -60,7 +60,7 @@ export default function NotesRouter(
 
       res.status(204).end();
     } catch (err) {
-      res.status(500).send({ message: 'Error updating note' });
+      res.status(500).send({ message: 'Error deleting note' });
     }
   });
 
