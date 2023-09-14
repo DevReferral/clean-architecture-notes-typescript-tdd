@@ -34,5 +34,15 @@ export default function NotesRouter(
     }
   });
 
+  router.post('/', async (req: Request, res: Response) => {
+    try {
+      const note = await createNoteUseCase.execute(req.body);
+
+      res.json(note);
+    } catch (err) {
+      res.status(500).send({ message: 'Note not created' });
+    }
+  });
+
   return router;
 }
