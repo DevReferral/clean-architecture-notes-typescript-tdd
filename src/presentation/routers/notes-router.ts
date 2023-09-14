@@ -30,7 +30,7 @@ export default function NotesRouter(
 
       res.json(note);
     } catch (err) {
-      res.status(500).send({ message: 'Error fetching notes' });
+      res.status(500).send({ message: 'Note with given id not found' });
     }
   });
 

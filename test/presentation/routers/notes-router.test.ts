@@ -94,14 +94,14 @@ describe('Note Router', () => {
 
     it('returns 500 on use case error', async () => {
       jest
-        .spyOn(mockGetAllNotesUseCase, 'execute')
+        .spyOn(mockGetOneNoteUseCase, 'execute')
         .mockImplementation(() => Promise.reject(Error()));
 
-      const response = await request(server).get('/notes');
+      const response = await request(server).get('/notes/1');
 
       expect(response.status).toBe(500);
       expect(response.body).toStrictEqual({
-        message: 'Error fetching notes',
+        message: 'Note with given id not found',
       });
     });
   });
