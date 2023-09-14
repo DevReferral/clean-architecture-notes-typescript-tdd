@@ -37,7 +37,7 @@ async function getMongoDS() {
       return note;
     },
     deleteOne: function (id: string): void {
-      Note.findByIdAndRemove(id);
+      Note.deleteOne({ _id: id });
     },
   };
 
