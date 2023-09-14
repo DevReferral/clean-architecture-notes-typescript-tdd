@@ -36,8 +36,6 @@ export default function NotesRouter(
 
   router.post('/', async (req: Request, res: Response) => {
     try {
-      console.log('The post body recieved', req.body);
-
       const note = await createNoteUseCase.execute(req.body);
 
       console.log('router note', note);
