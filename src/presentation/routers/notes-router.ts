@@ -55,5 +55,15 @@ export default function NotesRouter(
     }
   });
 
+  router.delete('/:id', async (req: Request, res: Response) => {
+    try {
+      await deleteNoteUseCase.execute(req.params.id);
+
+      res.status(204).end();
+    } catch (err) {
+      res.status(500).send({ message: 'Error updating note' });
+    }
+  });
+
   return router;
 }
