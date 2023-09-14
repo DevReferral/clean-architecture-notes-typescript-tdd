@@ -3,6 +3,7 @@ import DeleteNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/de
 import GetAllNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-all-notes-use-case';
 import GetOneNotesUseCase from '../../../src/domain/interfaces/use-cases/notes/get-one-note-use-case';
 import UpdateNoteUseCase from '../../../src/domain/interfaces/use-cases/notes/update-note-use-case';
+import { NotesResponseModel } from '../../../src/domain/models/notes';
 import NotesRouter from '../../../src/presentation/routers/notes-router';
 import server from '../../../src/server';
 import {
@@ -43,9 +44,12 @@ describe('Note Router', () => {
     jest.clearAllMocks();
   });
 
-  describe('first', () => {
-    it('first', () => {
-      expect(true).toBeTruthy();
+  describe('GET /note', () => {
+    it('should return 200 with data', () => {
+      const expectedData: NotesResponseModel[] = [
+        { content: 'c', id: '1', important: true },
+        { content: 'd', id: '2', important: false },
+      ];
     });
   });
 });
