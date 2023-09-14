@@ -1,4 +1,4 @@
-import { NotesDataSource } from '../../data/interfaces/notes-data-source';
+import { NotesDataSource } from '../../data/interfaces/data-soures/notes-data-source';
 import NotesRepository from '../interfaces/repositories/notes-repository';
 import { NotesRequestModel, NotesResponseModel } from '../models/notes';
 export default class NotesRepositoryImpl implements NotesRepository {

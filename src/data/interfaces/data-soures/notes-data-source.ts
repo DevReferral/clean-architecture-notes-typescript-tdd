@@ -1,7 +1,7 @@
 import {
   NotesRequestModel,
   NotesResponseModel,
-} from '../../domain/models/notes';
+} from '../../../domain/models/notes';
 
 export interface NotesDataSource {
   create(note: NotesRequestModel): Promise<NotesResponseModel>;
