@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import MongoDbNotesDataSource from './data/data-sources/mongodb/mongodb-notes-data-source';
 import Note from './data/data-sources/mongodb/schemas/Note';
 import NoSqlDatabaseWrapper from './data/interfaces/data-sources/nosql-database-wrapper';
@@ -10,8 +9,8 @@ import GetOneNote from './domain/use-cases/get-one-note';
 import UpdateNote from './domain/use-cases/update-note';
 import NotesRouter from './presentation/routers/notes-router';
 import server from './server';
-dotenv.config();
 
+import utils from './utils';
 import Database from './utils/Database';
 
 async function getMongoDS() {
@@ -50,5 +49,7 @@ async function getMongoDS() {
   );
 
   server.use('/notes', notesRouter);
-  server.listen(4000, () => console.log('Running on http://localhost:4000'));
+  server.listen(utils.PORT, () =>
+    console.log('Running on http://localhost:4000')
+  );
 })();
