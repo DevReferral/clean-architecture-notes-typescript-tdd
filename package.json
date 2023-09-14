@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll --collectCoverage",
     "tsc": "tsc",
-    "dev": "nodemon /src/main.ts"
+    "dev": "nodemon src/main.ts"
   },
   "keywords": [],
   "author": "",
