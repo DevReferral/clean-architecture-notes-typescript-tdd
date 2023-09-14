@@ -7,23 +7,24 @@ export default class Database {
   private static _database: Database;
   private constructor() {
     const dbUrl = utils.MONGO_DB_URI!;
-
-    (async () => {
-      await mongoose.connect(dbUrl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      } as ConnectOptions);
-
-      const db = mongoose.connection;
-
-      db.on('error', console.error.bind(console, 'connection error:'));
-      db.once('open', () => console.log('db connected'));
-    })();
     if (dbUrl) {
-      // mongoose
-      //   .connect(dbUrl)
-      //   .then(() => console.log('✅ Connected with database'))
-      //   .catch(() => console.error('❌ Not connected with database'));
+      (async () => {
+        await mongoose.connect(dbUrl, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        } as ConnectOptions);
+
+        const db = mongoose.connection;
+
+        db.on(
+          'error',
+          console.error.bind(
+            console,
+            'connection error:❌ Not connected with database'
+          )
+        );
+        db.once('open', () => console.log('✅ Connected with database'));
+      })();
     }
   }
   static connect() {
