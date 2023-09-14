@@ -160,12 +160,20 @@ describe('Note Router', () => {
       );
     });
     it('returns 500 on use case error', async () => {
+      const expectedId = '1';
+      const expectedData: NotesResponseModel = {
+        content: 'c',
+        id: '1',
+        important: true,
+      };
+
       jest
         .spyOn(mockUpdateNoteUseCase, 'execute')
         .mockImplementation(() => Promise.reject(Error()));
 
-      const response = await request(server).put('/notes');
-      // expect(response.status).toBe(500);
+      const response = await request(server).put(`/notes/${expectedId}`);
+
+      expect(response.status).toBe(500);
       expect(response.body).toStrictEqual({ message: 'Error updating note' });
     });
   });
