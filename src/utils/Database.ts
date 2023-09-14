@@ -1,10 +1,11 @@
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import utils from '.';
 dotenv.config();
 export default class Database {
   private static _database: Database;
   private constructor() {
-    const dbUrl = process.env.DB_URL;
+    const dbUrl = utils.MONGO_DB_URI;
     if (dbUrl) {
       mongoose
         .connect(dbUrl)
