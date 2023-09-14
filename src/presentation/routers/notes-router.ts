@@ -44,5 +44,15 @@ export default function NotesRouter(
     }
   });
 
+  router.put('/:id', async (req: Request, res: Response) => {
+    try {
+      const note = await updateNoteUseCase.execute(req.params.id, req.body);
+
+      res.status(200).json(note);
+    } catch (err) {
+      res.status(500).send({ message: 'Error updating note' });
+    }
+  });
+
   return router;
 }

@@ -26,7 +26,7 @@ describe('Create Note use case', () => {
       .mockImplementation(() => Promise.resolve(expected));
 
     //act
-    const result = await updateNoteUseCase.expect(expected.id, expected);
+    const result = await updateNoteUseCase.execute(expected.id, expected);
 
     //assert
     expect(result).toEqual(expected);

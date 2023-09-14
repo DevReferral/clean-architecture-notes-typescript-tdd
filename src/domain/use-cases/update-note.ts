@@ -5,7 +5,7 @@ import { NotesRequestModel, NotesResponseModel } from '../models/notes';
 export default class UpdateNote implements UpdateNoteUseCase {
   constructor(private readonly notesRepository: NotesRepository) {}
 
-  async expect(
+  async execute(
     id: string,
     note: NotesRequestModel
   ): Promise<NotesResponseModel> {
