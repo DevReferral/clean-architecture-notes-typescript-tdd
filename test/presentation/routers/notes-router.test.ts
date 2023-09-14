@@ -132,4 +132,31 @@ describe('Note Router', () => {
       expect(response.body).toStrictEqual({ message: 'Error creating note' });
     });
   });
+  describe('UPDATE /notes/:id', () => {
+    it('should return 200 with data', async () => {
+      const expectedData: NotesResponseModel = {
+        content: 'c',
+        id: '1',
+        important: true,
+      };
+
+      jest
+        .spyOn(mockUpdateNoteUseCase, 'execute')
+        .mockImplementation(() => Promise.resolve(expectedData));
+
+      const response = await request(server).put('/notes/1').send(expectedData);
+
+      expect(response.status).toBe(201);
+      expect(mockCreateNoteUseCase.execute).toBeCalledWith(expectedData);
+    });
+    it('returns 500 on use case error', async () => {
+      jest
+        .spyOn(mockCreateNoteUseCase, 'execute')
+        .mockImplementation(() => Promise.reject(Error()));
+
+      const response = await request(server).post('/notes');
+      expect(response.status).toBe(500);
+      expect(response.body).toStrictEqual({ message: 'Error creating note' });
+    });
+  });
 });
