@@ -2,7 +2,7 @@
   "name": "src",
   "version": "1.0.0",
   "description": "",
-  "main": "/lib/main.js",
+  "main": "/src/main.ts",
   "scripts": {
     "test": "jest --watchAll --collectCoverage",
     "tsc": "tsc",
