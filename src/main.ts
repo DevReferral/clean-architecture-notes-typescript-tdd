@@ -17,17 +17,21 @@ async function getMongoDS() {
   Database.connect();
 
   const notesDatabase: NoSqlDatabaseWrapper = {
-    find: function (query: object): Promise<any[]> {
-      return Note.find(query);
+    find: async function (query: object): Promise<any[]> {
+      const notes = await Note.find(query);
+      return notes;
     },
-    findOne: function (id: string): Promise<any> {
-      return Note.findOne({ _id: id });
+    findOne: async function (id: string): Promise<any> {
+      const note = await Note.findOne({ _id: id });
+      return note;
     },
-    insertOne: function (data: object): Promise<any> {
-      return Note.create(data);
+    insertOne: async function (data: object): Promise<any> {
+      const note = await Note.create(data);
+      return note;
     },
-    updateOne: function (id: string, data: object): Promise<any> {
-      return Note.findByIdAndUpdate(id, data);
+    updateOne: async function (id: string, data: object): Promise<any> {
+      const note = await Note.findByIdAndUpdate(id, data);
+      return note;
     },
     deleteOne: function (id: string): void {
       Note.findByIdAndRemove(id);
