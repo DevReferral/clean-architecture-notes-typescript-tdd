@@ -190,5 +190,18 @@ describe('Note Router', () => {
 
       expect(mockDeleteNoteUseCase.execute).toBeCalledWith(deleteId);
     });
+
+    it('returns 500 on use case error', async () => {
+      const expectedId = '1';
+
+      jest
+        .spyOn(mockDeleteNoteUseCase, 'execute')
+        .mockImplementation(() => Promise.reject(Error()));
+
+      const response = await request(server).delete(`/notes/${expectedId}`);
+
+      expect(response.status).toBe(500);
+      expect(response.body).toStrictEqual({ message: 'Error deleting note' });
+    });
   });
 });
