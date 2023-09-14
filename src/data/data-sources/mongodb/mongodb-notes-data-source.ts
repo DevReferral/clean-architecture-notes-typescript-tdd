@@ -26,9 +26,9 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     };
   }
   async create(note: NotesRequestModel): Promise<NotesResponseModel> {
-    console.log('got not in data source create', JSON.stringify(note));
+    console.log('got note in data source create', JSON.stringify(note));
     const item = await this.db.insertOne(note);
-
+    console.log('got datasource result', item);
     return {
       id: item._id.toString(),
       content: item.name,
