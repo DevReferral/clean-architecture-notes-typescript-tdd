@@ -2,10 +2,11 @@
   "name": "src",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "/lib/main.js",
   "scripts": {
     "test": "jest --watchAll --collectCoverage",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "dev": "nodemon main.js"
   },
   "keywords": [],
   "author": "",
