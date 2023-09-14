@@ -1,6 +1,6 @@
 import MongoDbNotesDataSource from './data/data-sources/mongodb/mongodb-notes-data-source';
 import Note from './data/data-sources/mongodb/schemas/Note';
-import NoSqlDatabaseWrapper from './data/interfaces/data-sources/nosql-database-wrapper';
+import NoSqlDatabaseWrapper from './data/interfaces/data-sources/no-sql-database-wrapper';
 import NotesRepositoryImpl from './domain/repositories/notes-repository';
 import { CreateNote } from './domain/use-cases/create-note';
 import DeleteNote from './domain/use-cases/delete-note';
