@@ -7,12 +7,12 @@ export default class Database {
   private static _database: Database;
   private constructor() {
     const dbUrl = utils.MONGO_DB_URI;
-    console.log('db url is', dbUrl);
+
     if (dbUrl) {
       mongoose
         .connect(dbUrl)
         .then(() => console.log('Connected with database'))
-        .catch(() => console.log('Not connected with database'));
+        .catch(() => console.error('Not connected with database'));
     }
   }
   static connect() {

@@ -38,7 +38,6 @@ export default function NotesRouter(
     try {
       const note = await createNoteUseCase.execute(req.body);
 
-      console.log('router note', note);
       res.status(201).json(note);
     } catch (err) {
       res.status(500).send({ message: 'Error creating note' });
