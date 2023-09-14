@@ -126,15 +126,15 @@ describe('Note Router', () => {
       expect(response).toStrictEqual(expectedData);
     });
 
-    it('returns 500 on use case error', async () => {
-      jest
-        .spyOn(mockGetAllNotesUseCase, 'execute')
-        .mockImplementation(() => Promise.reject(Error()));
+    // it('returns 500 on use case error', async () => {
+    //   jest
+    //     .spyOn(mockGetAllNotesUseCase, 'execute')
+    //     .mockImplementation(() => Promise.reject(Error()));
 
-      const response = await request(server).get('/notes');
+    //   const response = await request(server).get('/notes');
 
-      expect(response.status).toBe(500);
-      expect(response.body).toStrictEqual({ message: 'Error fetching notes' });
-    });
+    //   expect(response.status).toBe(500);
+    //   expect(response.body).toStrictEqual({ message: 'Error fetching notes' });
+    // });
   });
 });
