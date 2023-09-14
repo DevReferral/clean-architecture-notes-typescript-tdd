@@ -3,5 +3,5 @@ export default interface NoSqlDatabaseWrapper {
   findOne(id: string): Promise<any | null>;
   insertOne(data: object): Promise<any>;
   updateOne(id: string, data: object): Promise<any>;
-  deleteOne(id: string): Promise<void>;
+  deleteOne(id: string): void;
 }

@@ -3,7 +3,7 @@ import {
   NotesResponseModel,
 } from '../../../domain/models/notes';
 import NoSqlDatabaseWrapper from '../../interfaces/data-sources/nosql-database-wrapper';
-import { NotesDataSource } from '../../interfaces/data-sources/notes-data-source';
+import NotesDataSource from '../../interfaces/data-sources/notes-data-source';
 
 export default class MongoDbNotesDataSource implements NotesDataSource {
   constructor(private readonly db: NoSqlDatabaseWrapper) {}
@@ -46,7 +46,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
       important: item.important,
     };
   }
-  async deleteOne(id: string): Promise<void> {
-    return await this.db.deleteOne(id);
+  async deleteOne(id: string) {
+    await this.db.deleteOne(id);
   }
 }
