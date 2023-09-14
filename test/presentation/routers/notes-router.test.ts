@@ -147,7 +147,8 @@ describe('Note Router', () => {
       const response = await request(server).put('/notes/1').send(expectedData);
 
       expect(response.status).toBe(200);
-      expect(mockCreateNoteUseCase.execute).toBeCalledWith(1, expectedData);
+      expect(response.body).toStrictEqual(expectedData);
+      expect(mockUpdateNoteUseCase.execute).toBeCalledWith(1, expectedData);
     });
     it.skip('returns 500 on use case error', async () => {
       jest
