@@ -188,7 +188,7 @@ describe('Note Router', () => {
 
       await request(server).delete(`/notes/${deleteId}`);
 
-      expect(mockUpdateNoteUseCase.execute).toBeCalledWith(deleteId);
+      expect(mockDeleteNoteUseCase.execute).toBeCalledWith(deleteId);
     });
   });
 });
