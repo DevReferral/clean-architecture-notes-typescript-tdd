@@ -75,6 +75,7 @@ describe('Note Router', () => {
   });
   describe('GET /notes/:id', () => {
     it('should return 200 with data', async () => {
+      const expectedId = '1';
       const expectedData: NotesResponseModel = {
         content: 'c',
         id: '1',
@@ -87,17 +88,18 @@ describe('Note Router', () => {
 
       //call the api endpoint
 
-      const response = await request(server).get('/notes/1');
+      const response = await request(server).get(`/notes/${expectedId}`);
 
       expect(response.status).toBe(200);
     });
 
     it('returns 500 on use case error', async () => {
+      const expectedId = '1';
       jest
         .spyOn(mockGetOneNoteUseCase, 'execute')
         .mockImplementation(() => Promise.reject(Error()));
 
-      const response = await request(server).get('/notes/1');
+      const response = await request(server).get(`/notes/${expectedId}`);
 
       expect(response.status).toBe(500);
       expect(response.body).toStrictEqual({
@@ -134,6 +136,7 @@ describe('Note Router', () => {
   });
   describe('UPDATE /notes/:id', () => {
     it('should return 200 with data', async () => {
+      const expectedId = '1';
       const expectedData: NotesResponseModel = {
         content: 'c',
         id: '1',
@@ -144,21 +147,26 @@ describe('Note Router', () => {
         .spyOn(mockUpdateNoteUseCase, 'execute')
         .mockImplementation(() => Promise.resolve(expectedData));
 
-      const response = await request(server).put('/notes/1').send(expectedData);
+      const response = await request(server)
+        .put(`/notes/${expectedId}`)
+        .send(expectedData);
 
       expect(response.status).toBe(200);
       expect(response.body).toStrictEqual(expectedData);
 
-      expect(mockUpdateNoteUseCase.execute).toBeCalledWith('1', expectedData);
+      expect(mockUpdateNoteUseCase.execute).toBeCalledWith(
+        expectedId,
+        expectedData
+      );
     });
-    it.skip('returns 500 on use case error', async () => {
+    it('returns 500 on use case error', async () => {
       jest
-        .spyOn(mockCreateNoteUseCase, 'execute')
+        .spyOn(mockUpdateNoteUseCase, 'execute')
         .mockImplementation(() => Promise.reject(Error()));
 
-      const response = await request(server).post('/notes');
+      const response = await request(server).put('/notes');
       expect(response.status).toBe(500);
-      expect(response.body).toStrictEqual({ message: 'Error creating note' });
+      expect(response.body).toStrictEqual({ message: 'Error updating note' });
     });
   });
 });
