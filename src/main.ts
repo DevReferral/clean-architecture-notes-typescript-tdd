@@ -31,7 +31,9 @@ async function getMongoDS() {
       return note;
     },
     updateOne: async function (id: string, data: object): Promise<any> {
-      const note = await Note.findByIdAndUpdate(id, data);
+      const note = await Note.findOneAndUpdate({ _id: id }, data, {
+        new: true,
+      });
       return note;
     },
     deleteOne: function (id: string): void {
