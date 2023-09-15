@@ -1,9 +1,7 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
+import { CreateNote } from '../../../../src/domain/use-cases/create-note';
 
-import {
-  getCreateNote,
-  getMockNotesRepository,
-} from '../../../helpers/notesHelper';
+import { getMockNotesRepository } from '../../../helpers/notesHelper';
 
 let mockNotesRepository: NotesRepository;
 
@@ -14,7 +12,7 @@ beforeEach(() => {
 });
 test('should return new note', async () => {
   //arrange
-  const getAllNotesUseCase = getCreateNote(mockNotesRepository);
+  const createNoteUseCase = new CreateNote(mockNotesRepository);
 
   const expected = {
     id: '0',
@@ -27,7 +25,7 @@ test('should return new note', async () => {
     .mockImplementation(() => Promise.resolve(expected));
 
   //act
-  const result = await getAllNotesUseCase.execute(expected);
+  const result = await createNoteUseCase.execute(expected);
 
   //assert
   expect(result).toEqual(expected);
