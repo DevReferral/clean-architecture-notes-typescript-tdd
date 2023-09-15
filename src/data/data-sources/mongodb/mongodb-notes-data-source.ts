@@ -9,7 +9,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
   constructor(private readonly db: NoSqlDatabaseWrapper) {}
   async getAll(): Promise<NotesResponseModel[]> {
     const result = await this.db.find({});
-
+    console.log('The items are ', JSON.stringify(result, null, 2));
     return result.map((item) => ({
       id: item._id,
       content: item.content,
