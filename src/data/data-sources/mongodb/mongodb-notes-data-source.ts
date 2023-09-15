@@ -12,11 +12,14 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     for (let res of result) {
       console.log('id is : ', res._id);
     }
-    return result.map((item) => ({
-      id: item._id.toString(),
+    const transformed = result.map((item) => ({
+      id: JSON.stringify(item._id).toString(),
       content: item.content,
       important: item.important,
     }));
+
+    console.log('Transformed result', transformed);
+    return transformed;
   }
   async getOne(id: string): Promise<NotesResponseModel | null> {
     const item = await this.db.findOne(id);
