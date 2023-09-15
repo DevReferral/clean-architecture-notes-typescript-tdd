@@ -11,7 +11,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     const result = await this.db.find({});
     console.log('The items are ', JSON.stringify(result, null, 2));
     return result.map((item) => ({
-      id: item.id,
+      id: item.id.toString() || item._id.toString(),
       content: item.content,
       important: item.important,
     }));
@@ -20,7 +20,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     const item = await this.db.findOne(id);
 
     return {
-      id: item.id.toString(),
+      id: item.id.toString() || item._id.toString(),
       content: item.content,
       important: item.important,
     };
@@ -29,7 +29,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     const item = await this.db.insertOne(note);
 
     return {
-      id: item.id.toString(),
+      id: item.id.toString() || item._id.toString(),
       content: item.content,
       important: item.important,
     };
@@ -41,7 +41,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     const item = await this.db.updateOne(id, data);
 
     return {
-      id: item.id.toString(),
+      id: item.id.toString() || item._id.toString(),
       content: item.content,
       important: item.important,
     };
