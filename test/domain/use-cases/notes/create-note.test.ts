@@ -17,8 +17,8 @@ test('should return new note', async () => {
   const createNoteUseCase = getCreateNote(mockNotesRepository);
 
   const expected = {
-    id: '0',
-    content: '',
+    id: '1',
+    content: 'content',
     important: false,
   };
 
