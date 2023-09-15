@@ -33,7 +33,7 @@ export const getMockNotesRepository = () => new MockNotesRepository();
 export const getCreateNote = (mockNotesRepository: NotesRepository) =>
   new CreateNote(mockNotesRepository);
 
-export const getExpectedOutput = (count: number): NotesResponseModel[] => {
+export const getExpectedNotesOutput = (count: number): NotesResponseModel[] => {
   let expectedNotes: NotesResponseModel[] = [];
 
   for (let i = 1; i <= count; i++)

@@ -2,7 +2,7 @@ import NotesRepository from '../../../../src/domain/interfaces/repositories/note
 
 import {
   getCreateNote,
-  getExpectedOutput,
+  getExpectedNotesOutput,
   getMockNotesRepository,
 } from '../../../helpers/notesHelper';
 
@@ -17,7 +17,7 @@ test('should return new note', async () => {
   //arrange
   const createNoteUseCase = getCreateNote(mockNotesRepository);
 
-  const expected = getExpectedOutput(1)[0];
+  const expected = getExpectedNotesOutput(1)[0];
 
   jest
     .spyOn(mockNotesRepository, 'createNote')
