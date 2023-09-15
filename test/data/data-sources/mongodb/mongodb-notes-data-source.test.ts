@@ -73,30 +73,17 @@ describe('MongoDb DataSource', () => {
         important: true,
       };
 
-      const input = [
-        {
-          content: 'a',
-          _id: '1',
-          important: true,
-        },
-        {
-          content: 'b',
-          _id: '2',
-          important: false,
-        },
-      ];
-
       jest
         .spyOn(mockDatabase, 'findOne')
-        .mockImplementation(() => Promise.resolve('1'));
+        .mockImplementation(() => Promise.resolve(expected));
 
       //act
 
-      const result = await db.getOne('1');
+      const result = await db.getOne(expected.id);
 
       //assert
 
-      expect(mockDatabase.findOne).toHaveBeenCalledWith('1');
+      expect(mockDatabase.findOne).toHaveBeenCalledWith(expected.id);
 
       console.log('result is', JSON.stringify(result, null, 2));
       expect(result).toStrictEqual(expected);
