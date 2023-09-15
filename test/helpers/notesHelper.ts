@@ -30,5 +30,5 @@ class MockNotesRepository implements NotesRepository {
 
 export const getMockNotesRepository = () => new MockNotesRepository();
 
-export const getCreateNote = (mockNotesRepository) =>
+export const getCreateNote = (mockNotesRepository: MockNotesRepository) =>
   new CreateNote(mockNotesRepository);
