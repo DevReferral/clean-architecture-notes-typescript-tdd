@@ -32,9 +32,22 @@ describe('MongoDb DataSource', () => {
         },
       ];
 
+      const input = [
+        {
+          content: 'a',
+          _id: '1',
+          important: true,
+        },
+        {
+          content: 'b',
+          _id: '2',
+          important: false,
+        },
+      ];
+
       jest
         .spyOn(mockDatabase, 'find')
-        .mockImplementation(() => Promise.resolve(expected));
+        .mockImplementation(() => Promise.resolve(input));
 
       //act
 
