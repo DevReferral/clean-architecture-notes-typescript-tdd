@@ -57,7 +57,6 @@ describe('MongoDb DataSource', () => {
 
       expect(mockDatabase.find).toHaveBeenCalledWith({});
 
-      console.log('result is', JSON.stringify(result, null, 2));
       expect(result).toStrictEqual(expected);
     });
   });
@@ -89,7 +88,37 @@ describe('MongoDb DataSource', () => {
       //assert
       expect(mockDatabase.findOne).toHaveBeenCalledWith(input._id);
 
-      console.log('result is', JSON.stringify(result, null, 2));
+      expect(result).toStrictEqual(expected);
+    });
+  });
+
+  describe('updateOne', () => {
+    it('updates a note', async () => {
+      //arrange
+      const db = new MongoDbNotesDataSource(mockDatabase);
+
+      const input = {
+        content: 'a',
+        _id: '1',
+        important: true,
+      };
+
+      const expected = {
+        content: 'a',
+        id: '1',
+        important: true,
+      };
+
+      jest
+        .spyOn(mockDatabase, 'updateOne')
+        .mockImplementation(() => Promise.resolve(input));
+
+      //act
+      const result = await db.updateOne(input._id, input);
+
+      //assert
+      expect(mockDatabase.updateOne).toHaveBeenCalledWith(input._id, input);
+
       expect(result).toStrictEqual(expected);
     });
   });
