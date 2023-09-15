@@ -84,11 +84,9 @@ describe('MongoDb DataSource', () => {
         .mockImplementation(() => Promise.resolve(input));
 
       //act
-
       const result = await db.getOne(input._id);
 
       //assert
-
       expect(mockDatabase.findOne).toHaveBeenCalledWith(input._id);
 
       console.log('result is', JSON.stringify(result, null, 2));
