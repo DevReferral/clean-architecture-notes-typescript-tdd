@@ -19,19 +19,6 @@ describe('MongoDb DataSource', () => {
       //arrange
       const db = new MongoDbNotesDataSource(mockDatabase);
 
-      const expected: NotesResponseModel[] = [
-        {
-          content: 'a',
-          id: '1',
-          important: true,
-        },
-        {
-          content: 'b',
-          id: '2',
-          important: false,
-        },
-      ];
-
       const input = [
         {
           content: 'a',
@@ -41,6 +28,19 @@ describe('MongoDb DataSource', () => {
         {
           content: 'b',
           _id: '2',
+          important: false,
+        },
+      ];
+
+      const expected: NotesResponseModel[] = [
+        {
+          content: 'a',
+          id: '1',
+          important: true,
+        },
+        {
+          content: 'b',
+          id: '2',
           important: false,
         },
       ];
@@ -67,7 +67,13 @@ describe('MongoDb DataSource', () => {
       //arrange
       const db = new MongoDbNotesDataSource(mockDatabase);
 
-      const expected: NotesResponseModel = {
+      const input = {
+        content: 'a',
+        _id: '1',
+        important: true,
+      };
+
+      const expected = {
         content: 'a',
         id: '1',
         important: true,
@@ -75,15 +81,15 @@ describe('MongoDb DataSource', () => {
 
       jest
         .spyOn(mockDatabase, 'findOne')
-        .mockImplementation(() => Promise.resolve(expected));
+        .mockImplementation(() => Promise.resolve(input));
 
       //act
 
-      const result = await db.getOne(expected.id);
+      const result = await db.getOne(input._id);
 
       //assert
 
-      expect(mockDatabase.findOne).toHaveBeenCalledWith(expected.id);
+      expect(mockDatabase.findOne).toHaveBeenCalledWith(input._id);
 
       console.log('result is', JSON.stringify(result, null, 2));
       expect(result).toStrictEqual(expected);
