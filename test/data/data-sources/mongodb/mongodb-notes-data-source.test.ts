@@ -16,7 +16,9 @@ describe('MongoDb DataSource', () => {
 
   describe('getAll', () => {
     it('gets all the notes', async () => {
+      //arrange
       const db = new MongoDbNotesDataSource(mockDatabase);
+
       const expected: NotesResponseModel[] = [
         {
           content: 'a',
@@ -29,9 +31,19 @@ describe('MongoDb DataSource', () => {
           important: false,
         },
       ];
+
       jest
         .spyOn(mockDatabase, 'find')
         .mockImplementation(() => Promise.resolve(expected));
+
+      //act
+
+      const result = await db.getAll();
+
+      //assert
+
+      expect(mockDatabase.find).toHaveBeenCalledWith({});
+      expect(result).toStrictEqual(expected);
     });
   });
 });
