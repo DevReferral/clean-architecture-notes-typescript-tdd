@@ -11,7 +11,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     const result = await this.db.find({});
     console.log('The items are ', JSON.stringify(result, null, 2));
     for (let res of result) {
-      console.log('id is : ', JSON.stringify(res._id));
+      console.log('id is : ', res._id);
     }
     return result.map((item) => ({
       id: item._id.toString(),
