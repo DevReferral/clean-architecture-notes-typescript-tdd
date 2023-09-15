@@ -43,6 +43,8 @@ describe('MongoDb DataSource', () => {
       //assert
 
       expect(mockDatabase.find).toHaveBeenCalledWith({});
+
+      console.log('result is', JSON.stringify(result, null, 2));
       expect(result).toStrictEqual(expected);
     });
   });
