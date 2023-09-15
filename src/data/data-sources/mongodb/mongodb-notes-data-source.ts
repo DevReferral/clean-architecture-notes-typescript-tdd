@@ -11,7 +11,7 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
     const result = await this.db.find({});
 
     return result.map((item) => ({
-      id: item._id,
+      id: item._id.toString(),
       content: item.content,
       important: item.important,
     }));
