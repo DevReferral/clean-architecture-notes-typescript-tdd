@@ -1,3 +1,4 @@
+import MongoDbNotesDataSource from '../../../../src/data/data-sources/mongodb/mongodb-notes-data-source';
 import NoSqlDatabaseWrapper from '../../../../src/data/interfaces/data-sources/no-sql-database-wrapper';
 
 describe('MongoDb DataSource', () => {
@@ -17,5 +18,7 @@ describe('MongoDb DataSource', () => {
     jest.clearAllMocks();
   });
 
-  describe('getAll', () => {});
+  describe('getAll', () => {
+    const db = new MongoDbNotesDataSource(mockDatabase);
+  });
 });
