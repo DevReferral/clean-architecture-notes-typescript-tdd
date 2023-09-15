@@ -1,6 +1,6 @@
 import NoSqlDatabaseWrapper from '../../src/data/interfaces/data-sources/no-sql-database-wrapper';
 
-export const notesMongoDb: NoSqlDatabaseWrapper = {
+const notesMongoDb: NoSqlDatabaseWrapper = {
   find: function (query: object): Promise<any[]> {
     throw new Error('Function not implemented.');
   },
@@ -16,4 +16,8 @@ export const notesMongoDb: NoSqlDatabaseWrapper = {
   deleteOne: function (id: string): Promise<void> {
     throw new Error('Function not implemented.');
   },
+};
+
+export const getNotesMongoDb = () => {
+  return notesMongoDb;
 };
