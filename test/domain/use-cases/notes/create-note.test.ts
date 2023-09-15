@@ -12,7 +12,7 @@ beforeEach(() => {
 
   mockNotesRepository = getMockNotesRepository();
 });
-test('should return true', async () => {
+test('should return new note', async () => {
   //arrange
   const getAllNotesUseCase = getCreateNote(mockNotesRepository);
 
