@@ -10,10 +10,10 @@ export default class MongoDbNotesDataSource implements NotesDataSource {
   async getAll(): Promise<NotesResponseModel[]> {
     const result = await this.db.find({});
     for (let res of result) {
-      console.log('id is : ', res._id);
+      console.log('id is : ', res.id);
     }
     const transformed = result.map((item) => ({
-      id: JSON.stringify(item._id).toString(),
+      id: JSON.stringify(item).toString(),
       content: item.content,
       important: item.important,
     }));
