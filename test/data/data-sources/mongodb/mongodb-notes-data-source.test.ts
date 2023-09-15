@@ -61,4 +61,45 @@ describe('MongoDb DataSource', () => {
       expect(result).toStrictEqual(expected);
     });
   });
+
+  describe('getOne', () => {
+    it('gets one note with given id', async () => {
+      //arrange
+      const db = new MongoDbNotesDataSource(mockDatabase);
+
+      const expected: NotesResponseModel = {
+        content: 'a',
+        id: '1',
+        important: true,
+      };
+
+      const input = [
+        {
+          content: 'a',
+          _id: '1',
+          important: true,
+        },
+        {
+          content: 'b',
+          _id: '2',
+          important: false,
+        },
+      ];
+
+      jest
+        .spyOn(mockDatabase, 'findOne')
+        .mockImplementation(() => Promise.resolve('1'));
+
+      //act
+
+      const result = await db.getOne('1');
+
+      //assert
+
+      expect(mockDatabase.findOne).toHaveBeenCalledWith('1');
+
+      console.log('result is', JSON.stringify(result, null, 2));
+      expect(result).toStrictEqual(expected);
+    });
+  });
 });
