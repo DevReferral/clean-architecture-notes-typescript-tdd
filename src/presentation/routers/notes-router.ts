@@ -17,7 +17,6 @@ export default function NotesRouter(
   router.get('/', async (req: Request, res: Response) => {
     try {
       const notes = await getAllNotesUseCase.execute();
-      console.log('Notes got at the router', notes);
       res.json(notes);
     } catch (err) {
       res.status(500).send({ message: 'Error fetching notes' });

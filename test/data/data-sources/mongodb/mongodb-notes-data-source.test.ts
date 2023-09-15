@@ -122,4 +122,56 @@ describe('MongoDb DataSource', () => {
       expect(result).toStrictEqual(expected);
     });
   });
+
+  describe('insertOne', () => {
+    it('creates a note', async () => {
+      //arrange
+      const db = new MongoDbNotesDataSource(mockDatabase);
+
+      const input = {
+        content: 'a',
+        _id: '1',
+        important: true,
+      };
+
+      const expected = {
+        content: 'a',
+        id: '1',
+        important: true,
+      };
+
+      jest
+        .spyOn(mockDatabase, 'insertOne')
+        .mockImplementation(() => Promise.resolve(input));
+
+      //act
+      const result = await db.create(input);
+
+      //assert
+      expect(mockDatabase.insertOne).toHaveBeenCalledWith(input);
+
+      expect(result).toStrictEqual(expected);
+    });
+  });
+
+  describe('deleteOne', () => {
+    it('deletes a note', async () => {
+      //arrange
+      const db = new MongoDbNotesDataSource(mockDatabase);
+
+      const note_id = '1';
+
+      jest
+        .spyOn(mockDatabase, 'deleteOne')
+        .mockImplementation(() => Promise.resolve());
+
+      //act
+      const result = await db.deleteOne(note_id);
+
+      //assert
+      expect(mockDatabase.deleteOne).toHaveBeenCalledWith(note_id);
+
+      expect(result).toBeFalsy();
+    });
+  });
 });
