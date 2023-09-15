@@ -1,9 +1,11 @@
 import NotesRepository from '../../src/domain/interfaces/repositories/notes-repository';
+import { getMockCreateNoteUseCase } from './notesRouterHelper';
 
 import {
   NotesRequestModel,
   NotesResponseModel,
 } from '../../src/domain/models/notes';
+import { CreateNote } from '../../src/domain/use-cases/create-note';
 
 class MockNotesRepository implements NotesRepository {
   getNotes(): Promise<NotesResponseModel[]> {
@@ -27,3 +29,6 @@ class MockNotesRepository implements NotesRepository {
 }
 
 export const getMockNotesRepository = () => new MockNotesRepository();
+
+export const getCreateNote = (mockNotesRepository) =>
+  new CreateNote(mockNotesRepository);

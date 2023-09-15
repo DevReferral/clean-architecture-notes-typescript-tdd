@@ -1,7 +1,9 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
-import { NotesResponseModel } from '../../../../src/domain/models/notes';
-import { CreateNote } from '../../../../src/domain/use-cases/create-note';
-import { getMockNotesRepository } from '../../../helpers/notesHelper';
+
+import {
+  getCreateNote,
+  getMockNotesRepository,
+} from '../../../helpers/notesHelper';
 
 let mockNotesRepository: NotesRepository;
 
@@ -12,9 +14,9 @@ beforeEach(() => {
 });
 test('should return true', async () => {
   //arrange
-  const getAllNotesUseCase = new CreateNote(mockNotesRepository);
+  const getAllNotesUseCase = getCreateNote(mockNotesRepository);
 
-  const expected: NotesResponseModel = {
+  const expected = {
     id: '0',
     content: '',
     important: false,
