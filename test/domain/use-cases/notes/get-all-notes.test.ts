@@ -1,7 +1,10 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
 import { NotesResponseModel } from '../../../../src/domain/models/notes';
 import GetAllNotes from '../../../../src/domain/use-cases/get-all-notes';
-import { getMockNotesRepository } from '../../../helpers/notesHelper';
+import {
+  getExpectedNotesOutput,
+  getMockNotesRepository,
+} from '../../../helpers/notesHelper';
 
 describe('Get all notes use case', () => {
   let mockNotesRepository: NotesRepository;
@@ -14,10 +17,7 @@ describe('Get all notes use case', () => {
 
   test('should return notes', async () => {
     //arrange
-    const ExpectedResult: NotesResponseModel[] = [
-      { id: '1', content: 'first', important: true },
-      { id: '2', content: 'second', important: false },
-    ];
+    const ExpectedResult: NotesResponseModel[] = getExpectedNotesOutput(3);
 
     //act
     jest
