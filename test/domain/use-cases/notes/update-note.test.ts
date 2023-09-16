@@ -1,7 +1,10 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
 import { NotesResponseModel } from '../../../../src/domain/models/notes';
 import UpdateNote from '../../../../src/domain/use-cases/update-note';
-import { getMockNotesRepository } from '../../../helpers/notesHelper';
+import {
+  getExpectedNotesOutput,
+  getMockNotesRepository,
+} from '../../../helpers/notesHelper';
 
 describe('Create Note use case', () => {
   let mockNotesRepository: NotesRepository;
@@ -15,11 +18,7 @@ describe('Create Note use case', () => {
     //arrange
     const updateNoteUseCase = new UpdateNote(mockNotesRepository);
 
-    const expected: NotesResponseModel = {
-      id: '0',
-      content: 'new content',
-      important: true,
-    };
+    const expected: NotesResponseModel = getExpectedNotesOutput(1)[0];
 
     jest
       .spyOn(mockNotesRepository, 'updateNote')

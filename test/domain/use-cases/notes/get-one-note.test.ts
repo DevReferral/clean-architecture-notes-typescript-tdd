@@ -2,7 +2,10 @@ import NotesRepository from '../../../../src/domain/interfaces/repositories/note
 
 import { NotesResponseModel } from '../../../../src/domain/models/notes';
 import GetOneNote from '../../../../src/domain/use-cases/get-one-note';
-import { getMockNotesRepository } from '../../../helpers/notesHelper';
+import {
+  getExpectedNotesOutput,
+  getMockNotesRepository,
+} from '../../../helpers/notesHelper';
 
 describe('Get all notes use case', () => {
   let mockNotesRepository: NotesRepository;
@@ -16,11 +19,7 @@ describe('Get all notes use case', () => {
   describe('when note found', () => {
     test('should return notes', async () => {
       //arrange
-      const expectedResult: NotesResponseModel = {
-        id: '1',
-        content: 'first',
-        important: true,
-      };
+      const expectedResult: NotesResponseModel = getExpectedNotesOutput(1)[0];
       //act
       jest
         .spyOn(mockNotesRepository, 'getNote')
@@ -38,11 +37,7 @@ describe('Get all notes use case', () => {
   describe('when note not found', () => {
     test('should return null', async () => {
       //arrange
-      const expectedResult: NotesResponseModel = {
-        id: '1',
-        content: 'first',
-        important: true,
-      };
+      const expectedResult: NotesResponseModel = getExpectedNotesOutput(1)[0];
       //act
       jest
         .spyOn(mockNotesRepository, 'getNote')
