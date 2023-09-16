@@ -13,7 +13,7 @@ beforeEach(() => {
 
   mockNotesRepository = getMockNotesRepository();
 });
-test('should return new note', async () => {
+test.only('should return new note', async () => {
   //arrange
 
   //SUT = CreateNote class

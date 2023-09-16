@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/main.js",
   "scripts": {
-    "test": "jest --watchAll --collectCoverage",
+    "test": "jest --watchAll --collectCoverage --verbose",
     "tsc": "tsc",
     "dev": "NODE_ENV=dev nodemon src/main.ts",
     "start": "NODE_ENV=prod node lib/main.js"
