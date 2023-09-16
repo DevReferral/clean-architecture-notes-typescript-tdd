@@ -1,7 +1,7 @@
 import NotesRepository from '../../../../src/domain/interfaces/repositories/notes-repository';
+import { CreateNote } from '../../../../src/domain/use-cases/create-note';
 
 import {
-  getCreateNote,
   getExpectedNotesOutput,
   getMockNotesRepository,
 } from '../../../helpers/notesHelper';
@@ -15,7 +15,9 @@ beforeEach(() => {
 });
 test('should return new note', async () => {
   //arrange
-  const createNoteUseCase = getCreateNote(mockNotesRepository);
+
+  //SUT = CreateNote class
+  const createNoteUseCase = new CreateNote(mockNotesRepository);
 
   const expected = getExpectedNotesOutput(1)[0];
 
